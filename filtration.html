@@ -22,33 +22,6 @@
     <textarea id="showsearch"></textarea>
 </div>
 <script>
-    // function mysubmit() {
-    //       document.getElementById("showsearch").innerText="";
-    //       var reason=document.getElementById("inputinfo").value;
-    //       var mysearch=document.getElementById("search").value;
-    //       var result=reason.split("、");
-    //       var a=[];
-    //      // console.log(result);
-    //       var reg=/(^\w+[-+.]\w+)*@\w+([-.]\w+)*.\w+([-.]\w+)*$/;
-    //       for(var i=0;i<result.length;i++){
-    //          var regresult=reg.test(result[i]);
-    //          if(regresult===false){
-    //              result.splice(i,1);
-    //              i--;
-    //          }
-    //       }
-    //       console.log(result);
-    //       for(var j=0;j<result.length;j++){
-    //          var m=result[j].indexOf(mysearch);
-    //          console.log("m",m);
-    //          if(m!==-1){
-    //            console.log("j",j)
-    //              a.push(result[j]);
-    //          }
-    //       }
-    //       console.log(a);
-    //     document.getElementById("showsearch").innerText=a.join("、");
-    //  }
     document.getElementById("submit").onclick = function () {
         document.getElementById("showsearch").innerText="";
         var reason = document.getElementById("inputinfo").value;
