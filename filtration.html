@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        textarea {
+            width: 300px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <textarea id="inputinfo"></textarea>
+</div>
+<div>
+    <input id="search">
+    <button id="submit">查询</button>
+</div>
+<div>
+    <textarea id="showsearch"></textarea>
+</div>
+<script>
+    // function mysubmit() {
+    //       document.getElementById("showsearch").innerText="";
+    //       var reason=document.getElementById("inputinfo").value;
+    //       var mysearch=document.getElementById("search").value;
+    //       var result=reason.split("、");
+    //       var a=[];
+    //      // console.log(result);
+    //       var reg=/(^\w+[-+.]\w+)*@\w+([-.]\w+)*.\w+([-.]\w+)*$/;
+    //       for(var i=0;i<result.length;i++){
+    //          var regresult=reg.test(result[i]);
+    //          if(regresult===false){
+    //              result.splice(i,1);
+    //              i--;
+    //          }
+    //       }
+    //       console.log(result);
+    //       for(var j=0;j<result.length;j++){
+    //          var m=result[j].indexOf(mysearch);
+    //          console.log("m",m);
+    //          if(m!==-1){
+    //            console.log("j",j)
+    //              a.push(result[j]);
+    //          }
+    //       }
+    //       console.log(a);
+    //     document.getElementById("showsearch").innerText=a.join("、");
+    //  }
+    document.getElementById("submit").onclick = function () {
+        document.getElementById("showsearch").innerText="";
+        var reason = document.getElementById("inputinfo").value;
+        var mysearch = document.getElementById("search").value;
+        var showsearch= new msgFactory("email", reason, mysearch);
+        document.getElementById("showsearch").innerText=showsearch.join("、")
+    }
+    var msgFactory = function (type, value, search) {
+        if (this instanceof msgFactory) {
+            return this[type](value,search);
+        } else {
+            return new msgFactory(type, value, search);
+        }
+    }
+    msgFactory.prototype = {
+        email: function (value, search) {
+            var newvalue = [];
+            var result = value.split("、");
+            var reg = /(^\w+[-+.]\w+)*@\w+([-.]\w+)*.\w+([-.]\w+)*$/;
+            for (var i = 0; i < result.length; i++) {
+                var regresult = reg.test(result[i]);
+                if (regresult === false) {
+                    result.splice(i, 1);
+                    i--;
+                }
+            }
+            for (var j = 0; j < result.length; j++) {
+                var resultIndexOf = result[j].indexOf(search);
+                if (resultIndexOf !== -1) {
+                    newvalue.push(result[j]);
+                }
+            }
+            return newvalue;
+        }
+    }
+
+
+</script>
+</body>
+</html>
